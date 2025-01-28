@@ -12,4 +12,4 @@
 ![My Selfie](image/selfie.jpg)
 
 ## His Link
-My [LinkedIn](www.linkedin.com/in/yuxiang-su-30480332b)
+My [LinkedIn](https://www.linkedin.com/in/yuxiang-su-30480332b/)
