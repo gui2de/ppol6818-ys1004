@@ -3,9 +3,7 @@
 
 The population of x and y can be explained by following relationship: 
 
-\[
-y = 2x + \varepsilon, \quad \text{where } x \sim \mathcal{N}(0,1),\ \varepsilon \sim \mathcal{N}(0,1)
-\]
+`y = 2x + ε`, where `x ~ N(0,1)` and `ε ~ N(0,1)`
 
 This part simulate the regression results including estimated coefficient, standard error of estimated coefficient, and 95% confidence interval 500
 times for each size (10, 100, 1000, and 10000) of random sample from the created population.
