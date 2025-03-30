@@ -28,7 +28,7 @@ sample size grows, our estimates become not only more stable but also more relia
 ![Beta1](image/Beta1.jpg)
 
 **Figure 2**
-![SEM1](imageSEM1.jpg)
+![SEM1](image/SEM1.jpg)
 
 ### Part 2: Sampling noise in a fixed population
 This part simulates sampling noise in an infinite superpopulation using the same data-generating process as in Part 1. For a range of sample sizes—from 4 to over 2 million—we drew 500 random samples at each size. In each simulation, we performed an OLS regression to estimate the slope coefficient (beta). For every run, we recorded the estimated coefficient, its standard error, and the 95% confidence interval. These values were then averaged across the 500 repetitions to summarize the behavior of the estimator at each sample size.
@@ -79,6 +79,11 @@ The reason why the sizes of the SEM and confidence intervals may differ at power
 **Figure 6**
 ![SEM](image/SEM.jpg)
 
-
-	
+**Table 3.** Comparison Part1 vs. Part2
+| N     | Beta (P1) | Beta (P2) | SEM (P1) | SEM (P2) | p-value (P1) | p-value (P2) | CI Low (P1) | CI High (P1) | CI Low (P2) | CI High (P2) |
+|-------|-----------|-----------|----------|----------|--------------|--------------|-------------|--------------|-------------|--------------|
+| 10    | 1.992360  | 1.987078  | 0.348318 | 0.347940 | 0.002044     | 0.001409     | 1.309656    | 2.675064     | 1.305115    | 2.669041     |
+| 100   | 1.988481  | 2.004054  | 0.101150 | 0.101261 | 0.000000     | 0.000000     | 1.790228    | 2.186734     | 1.805582    | 2.202526     |
+| 1,000 | 1.999264  | 1.999059  | 0.031747 | 0.031622 | 0.000000     | 0.000000     | 1.937039    | 2.061489     | 1.937079    | 2.061038     |
+| 10,000| 1.999437  | 2.000410  | 0.010030 | 0.010002 | 0.000000     | 0.000000     | 1.979778    | 2.019097     | 1.980806    | 2.020014     |	
 
