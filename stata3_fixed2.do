@@ -70,7 +70,7 @@ use "part1_4.dta", clear
 sort N
 
 *beta
-table N, statistic(mean beta)
+table N, statistic(mean beta SEM ci_high ci_low) nformat(%9.6f)
 preserve
 collapse (mean) beta SEM ci_high ci_low, by(N)
 
@@ -82,29 +82,29 @@ encode str_N, gen(Ni)
 twoway 
 	(rcap ci_low ci_high Ni, lcolor(gs10))
 	(scatter beta Ni, mcolor(black)),
-	title("Average Beta Estimate by Sample Size")
-	xlabel(1(1)4, valuelabel)
+	xlabel(1(1)4, valuelabel angle(45))
 	xtitle("")
 	legend(order(1 2) pos(1) label(1 "Confidence Interval") label(2 "Coefficient Estimate") size(small))
+	fxsize(35)
 
 ;
 #delimit cr;
 
-graph export "Beta1.jpg", replace
+graph save "Beta1.gph", replace
 
 #delimit ;
 graph bar
 	SEM,
-	over(N)
+	over(N, label(angle(45)))
 	bar(1, color(gs10%80))
-	title("SEM vs. Sample Size")
 	blabel(bar, format(%9.2f))
 	ytitle("Average SE. of beta")
+	fxsize(35)
 
 ;
 #delimit cr;
 
-graph export "SEM1.jpg", replace
+graph save "SEM1.gph", replace
 
 restore
 

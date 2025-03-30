@@ -68,7 +68,7 @@ forvalues i = `start'/`end' {
 	local n = 2^`i'
 	dis "simulating for N = `n'"
 	
-	simulate N=r(N) beta=r(beta) SEM=r(SEM) p=r(pvalue) ci_low=r(ci_low) ci_high=r(ci_high), reps(500) nodots: ///
+	simulate N=r(N) beta=r(beta) SEM=r(SEM) pvalue=r(pvalue) ci_low=r(ci_low) ci_high=r(ci_high), reps(500) nodots: ///
 	 sample_regression, n(`n')
 	
 	append using "part2_2.dta"
@@ -81,7 +81,7 @@ local extras 10 100 1000 10000 100000 1000000
 foreach n of local extras {
 	display "Simulating for N = `n'"
     
-    simulate N=r(N) beta=r(beta) SEM=r(SEM) p=r(pvalue) ci_low=r(ci_low) ci_high=r(ci_high), reps(500) nodots: ///
+    simulate N=r(N) beta=r(beta) SEM=r(SEM) pvalue=r(pvalue) ci_low=r(ci_low) ci_high=r(ci_high), reps(500) nodots: ///
         sample_regression, n(`n')
 
     append using "part2_2.dta"
@@ -93,7 +93,7 @@ foreach n of local extras {
 use "part2_2.dta", clear
 
 *beta
-table N, statistic(mean beta)
+table N, statistic(mean beta SEM ci_high ci_low) nformat(%9.6f)
 preserve
 collapse (mean) beta SEM ci_high ci_low, by(N)
 
@@ -115,6 +115,7 @@ twoway
 #delimit cr;
 
 graph save "Beta2.gph", replace
+graph export "Beta2.jpg", replace
 
 #delimit ;
 graph bar
@@ -128,6 +129,7 @@ graph bar
 #delimit cr;
 
 graph save "SEM2.gph", replace
+graph export "SEM2.jpg", replace
 
 restore
 
@@ -135,8 +137,31 @@ restore
 *graph combine
 graph use "Beta1.gph"
 graph combine Beta1.gph Beta2.gph, col(2) ycommon title("Beta Estimates by Sample Size")
+graph export "Beta.jpg", replace
 
 graph use "SEM1.gph"
-graph combine SEM1.gph SEM2.gph, col(2) ycommon title("Beta Estimates by Sample Size")
+graph combine SEM1.gph SEM2.gph, col(2) ycommon title("SEM by Sample Size")
+graph export "SEM.jpg", replace
 
+*comparison table
+use "part1_4.dta", clear
 
+capture gen j = 1
+
+save "part1_4.dta", replace
+
+use "part2_2.dta", clear
+
+keep if N == 10 | N == 100 | N == 1000 | N == 10000
+
+gen j = 2
+
+append using part1_4.dta
+
+collapse (mean) beta SEM pvalue ci_low ci_high, by(N j)
+
+reshape wide beta SEM pvalue ci_low ci_high, i(N) j(j)
+
+format beta* SEM* pvalue* ci* %9.6f
+
+order N beta1 beta2 SEM1 SEM2 pvalue1 pvalue2 ci_low1 ci_low2 ci_high1 ci_high2
