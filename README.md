@@ -14,7 +14,7 @@ Table 1 and Figure 1 display the average beta estimates and corresponding confid
 samples drawn from a fixed population of 10,000 observations. The results suggest that the estimated coefficients remain relatively stable as 
 sample size increases, indicating that the estimator is both unbiased and consistent. Furthermore, Table 1 and Figure 2 show that the standard 
 error of the estimated coefficients decreases with larger sample sizes, demonstrating the expected gain in precision. This implies that as the 
-sample size grows, our estimates become not only more stable but also more reliable, narrowing the uncertainty around the true parameter value 2.
+sample size grows, our estimates become more stable and reliable, which narrows the uncertainty around the true parameter value 2.
 
 **Table 1.** Average Regression by Sample Size with Fixed Population
 | r(N)   | r(beta)  | r(SEM)   | r(ci_high) | r(ci_low) |
@@ -31,7 +31,7 @@ sample size grows, our estimates become not only more stable but also more relia
 ![SEM1](image/SEM1.jpg)
 
 ### Part 2: Sampling noise in a fixed population
-This part simulates sampling noise in an infinite superpopulation using the same data-generating process as in Part 1. For a range of sample sizes—from 4 to over 2 million—we drew 500 random samples at each size. In each simulation, we performed an OLS regression to estimate the slope coefficient (beta). For every run, we recorded the estimated coefficient, its standard error, and the 95% confidence interval. These values were then averaged across the 500 repetitions to summarize the behavior of the estimator at each sample size.
+This part simulates sampling noise in an infinite superpopulation using the same data-generating process as in Part 1. For a range of sample sizes—from 4 to over 2 million—we drew 500 random samples at each size. In each simulation, this part performs an OLS regression to estimate the slope coefficient (beta). The estimated coefficient, its standard error, and the 95% confidence interval are recorded for every run,. These values were then averaged across the 500 repetitions to summarize the behavior of the estimator at each sample size.
 
 **Table 2.** Average Regression Estimates by Population Size
 | r(N)     | r(beta)  | r(SEM)   | r(ci_high) | r(ci_low) |
