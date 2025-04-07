@@ -26,11 +26,11 @@ The comparison across models reveals clear differences in bias. The naive model 
 | 4 (T + X1 + X2 + FE)  | 0.4942         | 0.2845       | 0.7039        |
 | 5 (All covariates)    | 0.4574         | 0.1824       | 0.7323        |
 
-![Figure 1. Biaseness](image/biaseness.jpg.jpg)
+![Figure 1. Biaseness](image/biaseness.jpg)
 
 ## 3. Convergence Toward the True Effect
 
-As the sample size increases, all correctly specified models show convergence toward the true treatment effect of 0.5. This is visible in the shrinking confidence intervals and increasingly stable coefficient estimates across larger `N`. The models that properly control for confounding (beginning with “T + X1”) consistently yield estimates centered around the true effect, even at moderate sample sizes. In contrast, the “T only” model remains biased regardless of `N`, indicating that increasing sample size cannot fix misspecification. These findings demonstrate the importance of including confounders and group-level controls to ensure both unbiasedness and efficient convergence in causal inference.
+As the sample size increases, all correctly specified models show convergence toward the true treatment effect of 0.5. This is visible in the shrinking confidence intervals and increasingly stable coefficient estimates across larger `N`. The models that properly control for confounding (beginning with “T + X1”) consistently yield estimates centered around the true effect, even at moderate sample sizes. In contrast, the “T only” model remains biased regardless of `N`, indicating that increasing sample size cannot fix misspecification.
 
 #### Regression Estimates by Sample Size
 
