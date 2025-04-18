@@ -1,0 +1,80 @@
+
+This report was created by user suyux on 18Apr2025 using the Stata command ietestform
+
+Use either of these links to read more about this command:
+,https://github.com/worldbank/iefieldkit
+,https://dimewiki.worldbank.org/wiki/Ietestform
+
+,Form ID,yuxiangs_form_ys1004
+,Form Title,Yuxiang's form ys1004
+,Form Version,2504181541
+,Form File,survey3.xlsx
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+TEST: NON NUMERIC NAME VALUES
+----------------------------------------------------------------------
+
+"There are non numeric values in the [value] column of the choice sheet"
+
+,"row" ,"list_name" ,"value" ,"label" ,"labelstata" 
+,"36","news_source","source_code","source_name","source_name"
+,"37","category","category_code","category_name","category_name"
+
+
+Read more about this test and why this is an error or does not follow the best practices we recommend here:
+https://dimewiki.worldbank.org/wiki/Ietestform#Value.2FName_Numeric
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+TEST: MISSING END_GROUP/END_REPEAT NAME
+----------------------------------------------------------------------
+
+"It is bad practice to leave the name column empty for end_group or end_repeat fields. While this is "
+"allowed in ODK, it makes error finding harder and slower. The following repeat or end groups have "
+"empty name columns:"
+
+,"row" ,"type" ,"name" 
+,"16","end_group",""
+
+
+Read more about this test and why this is an error or does not follow the best practices we recommend here:
+https://dimewiki.worldbank.org/wiki/Ietestform#Matching_begin_.2Fend
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+TEST: NON-REQUIRED NON-NOTE TYPE FIELD
+----------------------------------------------------------------------
+
+"Fields of types other than note should all be required so that it cannot be skipped during the "
+"interview. The following fields are not required and could therfore be skipped by the enumerator:"
+
+,"row" ,"type" ,"name" 
+,"17","select_one","consent"
+,"34","text","other_category"
+,"35","select_multiple","news_source"
+,"36","select_one","trust_level"
+
+
+Read more about this test and why this is an error or does not follow the best practices we recommend here:
+https://dimewiki.worldbank.org/wiki/Ietestform#Required_Column
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+TEST: REQUIRED NOTE TYPE FIELD
+----------------------------------------------------------------------
+
+"Fields of type note creates an impassable view that are impossible for the enumerator to sweep "
+"pass. Make sure that is the inentional behavior for the following fields:"
+
+,"row" ,"type" ,"name" 
+,"24","note","duplicate_warning"
+
+
+Read more about this test and why this is an error or does not follow the best practices we recommend here:
+https://dimewiki.worldbank.org/wiki/Ietestform#Required_Column
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+This is the end of the report.
